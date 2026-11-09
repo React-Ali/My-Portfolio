@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Ali Hasan">
+  <defs>
+    <!-- Outer gradient background -->
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4f46e5"/>
+      <stop offset=".5" stop-color="#06b6d4"/>
+      <stop offset="1" stop-color="#a855f7"/>
+    </linearGradient>
+
+    <!-- Letter gradient (white → cyan fade) -->
+    <linearGradient id="a" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#67e8f9"/>
+    </linearGradient>
+
+    <!-- Top gloss -->
+    <radialGradient id="gloss" cx=".35" cy=".15" r=".8">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".4"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Inner dark glow (adds depth) -->
+    <radialGradient id="depth" cx=".5" cy=".85" r=".7">
+      <stop offset="0" stop-color="#06080f" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#06080f" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Rounded square base -->
+  <rect width="64" height="64" rx="16" fill="url(#bg)"/>
+
+  <!-- Gloss overlay -->
+  <rect width="64" height="64" rx="16" fill="url(#gloss)"/>
+
+  <!-- Depth overlay (bottom shading) -->
+  <rect width="64" height="64" rx="16" fill="url(#depth)"/>
+
+  <!-- Geometric "A" with negative-space counter -->
+  <path
+    d="M 32 11
+       L 50.5 52.5
+       L 43.5 52.5
+       L 38.6 41
+       L 25.4 41
+       L 20.5 52.5
+       L 13.5 52.5
+       Z
+       M 29.6 35
+       L 34.4 35
+       L 32 26.5
+       Z"
+    fill="url(#a)"
+    fill-rule="evenodd"
+  />
+
+  <!-- Accent spark (AI vibe) -->
+  <circle cx="52" cy="12" r="2.4" fill="#22d3ee"/>
+  <circle cx="52" cy="12" r="2.4" fill="#ffffff" opacity=".3"/>
+</svg>
