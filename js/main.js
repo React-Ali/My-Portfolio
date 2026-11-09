@@ -1,3 +1,5 @@
+/* Clear any old theme preference (dark mode only now) */
+try { localStorage.removeItem('theme'); document.documentElement.removeAttribute('data-theme'); } catch {}
 /* ================= PRELOADER ================= */
 const preloader = document.getElementById('preloader');
 if (preloader) {
@@ -5,12 +7,6 @@ if (preloader) {
   window.addEventListener('load', () => setTimeout(hide, 500));
   setTimeout(hide, 3000);
 }
-
-/* ================= CLEAR OLD THEME PREFERENCE ================= */
-try { 
-  localStorage.removeItem('theme'); 
-  document.documentElement.removeAttribute('data-theme'); 
-} catch {}
 
 /* ================= CUSTOM CURSOR ================= */
 const cursorDot = document.getElementById('cursorDot');
@@ -72,7 +68,7 @@ if (burger && menu) {
   }));
 }
 
-/* ================= SCROLL & PROGRESS ================= */
+/* ================= SCROLL ================= */
 const progress = document.getElementById('progress');
 const topBtn = document.getElementById('top');
 window.addEventListener('scroll', () => {
@@ -84,7 +80,7 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 if (topBtn) topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-/* ================= REVEAL ON SCROLL ================= */
+/* ================= REVEAL ================= */
 const revealObserver = new IntersectionObserver((entries, obs) => {
   entries.forEach((e, i) => {
     if (e.isIntersecting) {
@@ -92,10 +88,10 @@ const revealObserver = new IntersectionObserver((entries, obs) => {
       obs.unobserve(e.target);
     }
   });
-}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+}, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-/* ================= COUNTERS (FIXED) ================= */
+/* ================= COUNTERS ================= */
 const counters = document.querySelectorAll('[data-count]');
 if (counters.length) {
   const counterObserver = new IntersectionObserver((entries, obs) => {
@@ -112,7 +108,7 @@ if (counters.length) {
       }, 28);
       obs.unobserve(el);
     });
-  }, { threshold: 0.1 }); // Changed to 0.1 so it fires correctly
+  }, { threshold: 0.5 });
   counters.forEach(c => counterObserver.observe(c));
 }
 
@@ -127,11 +123,11 @@ if (skillBars.length) {
         obs.unobserve(el);
       }
     });
-  }, { threshold: 0.3 });
+  }, { threshold: 0.4 });
   skillBars.forEach(b => barObserver.observe(b));
 }
 
-/* ================= TYPING EFFECT ================= */
+/* ================= TYPING ================= */
 const typedEl = document.getElementById('typed');
 if (typedEl) {
   const roles = [
@@ -199,7 +195,6 @@ if (canvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   const particleCount = window.innerWidth < 768 ? 35 : 70;
   const maxDistance = 160;
   const mouse = { x: null, y: null, radius: 170 };
-  
   const resize = () => { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; };
   resize();
   window.addEventListener('mousemove', (e) => {
@@ -208,7 +203,6 @@ if (canvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   }, { passive: true });
   window.addEventListener('mouseleave', () => { mouse.x = null; mouse.y = null; });
   window.addEventListener('resize', resize);
-  
   class Particle {
     constructor() {
       this.x = Math.random() * canvas.width;
@@ -238,9 +232,7 @@ if (canvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       ctx.fill();
     }
   }
-  
   for (let i = 0; i < particleCount; i++) particles.push(new Particle());
-  
   function connect() {
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
@@ -258,7 +250,6 @@ if (canvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       }
     }
   }
-  
   (function loop() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     particles.forEach(p => { p.update(); p.draw(); });
@@ -267,7 +258,7 @@ if (canvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   })();
 }
 
-/* ================= ICONS LIBRARY ================= */
+/* ================= ICONS ================= */
 const icons = {
   layers:'<svg viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>',
   tree:'<svg viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="5" r="2.5"/><circle cx="6" cy="19" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="M12 7.5v4M6 16.5v-3h12v3"/></svg>',
@@ -303,7 +294,7 @@ const icons = {
   rocket:'<svg viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91 0z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>'
 };
 
-/* ================= COURSES DATA & RENDERER ================= */
+/* ================= COURSES DATA ================= */
 const courses = [
   {t:'Discrete Structures', c:'cs', i:'grid', issuer:'Saylor University', desc:'Logic, sets, relations, graph theory, combinatorics and mathematical proofs — the mathematical backbone of computer science.'},
   {t:'Data Structures', c:'cs', i:'tree', issuer:'Saylor University', desc:'Mastered arrays, linked lists, stacks, queues, trees, graphs, and hash tables — with complexity analysis of each structure.'},
@@ -359,6 +350,7 @@ const courses = [
   {t:'Product Management Job Simulation', c:'sim', i:'box', issuer:'Lloyds Banking Group', desc:'User research, product roadmap design, and feature prioritization for digital products.'}
 ];
 
+/* ================= RENDER COURSES ================= */
 const grid = document.getElementById('courseGrid');
 if (grid) {
   const renderCourses = (filter = 'all') => {
@@ -384,7 +376,7 @@ if (grid) {
   });
 }
 
-/* ================= CERTIFICATES DATA & RENDERER ================= */
+/* ================= CERTIFICATES DATA ================= */
 const certificates = [
   {name:'Business Management Essentials', issuer:'Management and Strategy Institute', category:'professional', date:'October 2025'},
   {name:'SEO (Search Engine Optimization)', issuer:'HubSpot Academy', category:'professional', date:'October 2025'},
@@ -440,6 +432,7 @@ const certificates = [
   {name:'Product Management Job Simulation', issuer:'Lloyds Banking Group', category:'simulation', date:'2025'}
 ];
 
+/* ================= RENDER CERTIFICATES ================= */
 const certList = document.getElementById('certList');
 if (certList) {
   const renderCertificates = (filter = 'all') => {
@@ -468,7 +461,7 @@ if (certList) {
   });
 }
 
-/* ================= 3D TILT & GLOW ================= */
+/* ================= 3D TILT + PROJECT GLOW ================= */
 if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   document.querySelectorAll('.card, .cert, .service, .stat, .edu, .project-card, .story-block, .pricing-card').forEach(el => {
     let raf;
@@ -493,7 +486,7 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   });
 }
 
-/* ================= TOAST NOTIFICATIONS ================= */
+/* ================= TOAST ================= */
 let toastTimer;
 function showToast(msg) {
   let t = document.getElementById('toast');
@@ -509,7 +502,7 @@ function showToast(msg) {
   toastTimer = setTimeout(() => t.classList.remove('show'), 3600);
 }
 
-/* ================= PRICING PLANS (API + FALLBACK) ================= */
+/* ================= PRICING RENDERER ================= */
 const DEFAULT_PLANS = [
   { name: 'Starter', price: '$299', suffix: 'starting', desc: 'For a clean landing page or small business site.',
     features: ['1–3 page website', 'Mobile responsive', 'Basic SEO setup', 'Contact form', '7-day support'], cta: 'Get Started' },
@@ -536,7 +529,6 @@ async function loadPricing() {
   const targets = document.querySelectorAll('#homePricing, #pricingGrid');
   if (!targets.length) return;
   let plans = DEFAULT_PLANS;
-  
   try {
     const res = await fetch('/api/settings');
     if (res.ok) {
@@ -549,12 +541,11 @@ async function loadPricing() {
       }
     }
   } catch {}
-  
   targets.forEach(t => renderPricingGrid(t, plans));
 }
 loadPricing();
 
-/* ================= CONTACT FORM SUBMISSION ================= */
+/* ================= CONTACT FORM (QUOTE) ================= */
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
   const params = new URLSearchParams(location.search);
@@ -570,7 +561,6 @@ if (contactForm) {
       showToast('Please fill name, email and message.');
       return;
     }
-    
     const btn = this.querySelector('button[type="submit"]');
     const oldText = btn.textContent;
     btn.disabled = true;

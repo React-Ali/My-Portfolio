@@ -11,7 +11,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/style.css">
 <style>
-  /* === Existing Admin Styles === */
   body{background:var(--bg);min-height:100vh}
   body::before{opacity:.4}
   .login-wrap{min-height:100vh;display:grid;place-items:center;padding:24px;position:relative;z-index:1}
@@ -56,7 +55,6 @@
   .tab-head h1{font-size:1.6rem}
   .tab-head p{color:var(--muted);font-size:.88rem;margin-top:4px}
 
-  /* === New Stat Cards === */
   .admin-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:28px}
   .admin-stat{background:var(--card);border:1px solid var(--card-brd);border-radius:14px;padding:20px;transition:.3s;position:relative;overflow:hidden}
   .admin-stat::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad);opacity:.6}
@@ -64,12 +62,12 @@
   .admin-stat .num{font-family:'Space Grotesk';font-size:2rem;font-weight:700;line-height:1}
   .admin-stat .num.accent{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 
-  /* === Tables & Controls === */
   .quotes-controls{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
   .quotes-controls input,.quotes-controls select{padding:10px 14px;border-radius:10px;background:rgba(255,255,255,.04);border:1px solid var(--card-brd);color:var(--txt);font-family:inherit;font-size:.85rem;outline:none;transition:.2s}
   .quotes-controls input:focus,.quotes-controls select:focus{border-color:var(--c1);background:rgba(99,102,241,.08)}
   .quotes-controls input{flex:1;min-width:200px}
-  
+  .quotes-controls select{min-width:140px}
+
   .quotes-table{background:var(--card);border:1px solid var(--card-brd);border-radius:14px;overflow:hidden}
   .q-table-wrap{overflow-x:auto}
   table.qt{width:100%;border-collapse:collapse;font-size:.85rem}
@@ -97,18 +95,17 @@
   .q-status-select{padding:6px 8px;border-radius:7px;background:rgba(255,255,255,.06);border:1px solid var(--card-brd);color:var(--txt);font-size:.78rem;font-family:inherit;cursor:pointer}
   .q-status-select:focus{outline:2px solid var(--c2);outline-offset:2px}
 
-  /* === New Project Cards Grid === */
+  /* Projects Grid */
   .project-grid-admin{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
   .proj-admin-card{background:var(--card);border:1px solid var(--card-brd);border-radius:14px;padding:20px;display:flex;flex-direction:column;position:relative}
   .proj-admin-card h4{font-size:1rem;margin-bottom:6px}
   .proj-admin-card p{font-size:.8rem;color:var(--muted);margin-bottom:14px;flex:1}
   .proj-admin-card .tags{font-size:.7rem;color:#a5b4fc;margin-bottom:14px}
   .proj-admin-card .actions{display:flex;gap:8px;margin-top:auto}
-  .proj-admin-card .actions button{flex:1;padding:6px;border-radius:6px;border:1px solid var(--card-brd);background:rgba(255,255,255,.05);color:var(--txt);cursor:pointer;font-size:.75rem}
-  .proj-admin-card .actions button:hover{background:rgba(99,102,241,.15);border-color:var(--c1)}
+  .proj-admin-card .actions button,.proj-admin-card .actions a{flex:1;padding:6px;border-radius:6px;border:1px solid var(--card-brd);background:rgba(255,255,255,.05);color:var(--txt);cursor:pointer;font-size:.75rem;text-align:center;text-decoration:none}
+  .proj-admin-card .actions button:hover,.proj-admin-card .actions a:hover{background:rgba(99,102,241,.15);border-color:var(--c1)}
   .proj-admin-card .actions button.del:hover{background:rgba(239,68,68,.15);border-color:#ef4444;color:#fca5a5}
 
-  /* === Modals & Settings === */
   .detail-modal,.confirm-modal{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:900;display:none;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(6px)}
   .detail-modal.show,.confirm-modal.show{display:flex}
   .detail-card,.confirm-card{background:var(--bg);border:1px solid var(--card-brd);border-radius:18px;max-width:640px;width:100%;max-height:88vh;overflow-y:auto;position:relative}
@@ -122,7 +119,6 @@
   .detail-row .k{color:var(--muted)}
   .detail-row .v{color:var(--txt);text-align:right;font-weight:500;word-break:break-word}
   .detail-message{background:rgba(255,255,255,.03);border:1px solid var(--card-brd);border-radius:10px;padding:14px 16px;margin-top:16px;color:#a9b3c6;font-size:.9rem;line-height:1.75;white-space:pre-wrap}
-  .detail-notes{width:100%;margin-top:10px;padding:12px;border-radius:10px;background:rgba(251,191,36,.05);border:1px solid rgba(251,191,36,.2);color:var(--txt);font-family:inherit;font-size:.85rem;resize:vertical}
 
   .settings-grid{display:grid;gap:20px;max-width:880px}
   .settings-card{background:var(--card);border:1px solid var(--card-brd);border-radius:16px;padding:26px}
@@ -140,7 +136,6 @@
     .admin-main{padding:20px}
     table.qt th,table.qt td{padding:10px}
     table.qt th:nth-child(3),table.qt td:nth-child(3){display:none}
-    .detail-modal,.confirm-modal{padding:10px}
   }
 </style>
 </head>
@@ -209,10 +204,6 @@
             <option value="won">Won</option>
             <option value="lost">Lost</option>
           </select>
-          <select id="qSort">
-            <option value="date-desc">Newest First</option>
-            <option value="date-asc">Oldest First</option>
-          </select>
         </div>
         <div class="quotes-table"><div class="q-table-wrap" id="quotesWrap"></div></div>
       </section>
@@ -246,7 +237,7 @@
   </div>
 </div>
 
-<!-- Modals -->
+<!-- Detail Modal -->
 <div class="detail-modal" id="detailModal">
   <div class="detail-card">
     <div class="detail-head"><h3 id="detailTitle">Quote</h3><button class="detail-close" id="detailClose">×</button></div>
@@ -254,22 +245,23 @@
   </div>
 </div>
 
+<!-- Add Project Modal -->
 <div class="detail-modal" id="projectModal">
   <div class="detail-card" style="max-width:480px">
-    <div class="detail-head"><h3 id="projModalTitle">Add Project</h3><button class="detail-close" id="projClose">×</button></div>
+    <div class="detail-head"><h3>Add Project</h3><button class="detail-close" id="projClose">×</button></div>
     <div class="detail-body">
       <div class="settings-card" style="padding:0;background:none;border:none">
         <div class="field"><label>Title</label><input id="p-title" placeholder="Benzo Design"></div>
         <div class="field"><label>Description</label><textarea id="p-desc" rows="3" placeholder="Short summary..."></textarea></div>
-        <div class="field"><label>Tags (comma separated)</label><input id="p-tags" placeholder="SaaS, Full-Stack, 3 Tools"></div>
+        <div class="field"><label>Tags (comma separated)</label><input id="p-tags" placeholder="SaaS, Full-Stack"></div>
         <div class="field"><label>Link</label><input id="p-link" placeholder="https://..."></div>
-        <div class="field"><label>Badge Text</label><input id="p-badge" value="LIVE"></div>
       </div>
       <button class="btn primary" id="saveProjectBtn" style="width:100%;margin-top:20px">Save Project</button>
     </div>
   </div>
 </div>
 
+<!-- Confirm Modal -->
 <div class="confirm-modal" id="confirmModal">
   <div class="confirm-card">
     <h3 id="confirmTitle">Are you sure?</h3>
@@ -352,10 +344,8 @@ function renderStats() {
 /* === QUOTES === */
 function fmtDate(s) { if(!s) return '—'; const d = new Date(s); return isNaN(d) ? s : d.toLocaleString('en-GB', { day:'2-digit', month:'short', year:'numeric' }); }
 function renderQuotes() {
-  const term = $('#qSearch').value.toLowerCase(); const status = $('#qStatusFilter').value; const sort = $('#qSort').value;
+  const term = $('#qSearch').value.toLowerCase(); const status = $('#qStatusFilter').value;
   let filtered = quotes.filter(q => (!status || q.status === status) && (!term || JSON.stringify(q).toLowerCase().includes(term)));
-  if (sort === 'date-desc') filtered.sort((a,b) => new Date(b.created_at) - new Date(a.created_at));
-  if (sort === 'date-asc') filtered.sort((a,b) => new Date(a.created_at) - new Date(b.created_at));
   
   if(!filtered.length) { $('#quotesWrap').innerHTML = `<table class="qt"><tr><td style="text-align:center;padding:40px;color:var(--muted)">No quotes found.</td></tr></table>`; return; }
   
@@ -373,7 +363,6 @@ function renderQuotes() {
 }
 $('#qSearch').addEventListener('input', renderQuotes);
 $('#qStatusFilter').addEventListener('change', renderQuotes);
-$('#qSort').addEventListener('change', renderQuotes);
 
 document.addEventListener('click', e => {
   const viewBtn = e.target.closest('.view-btn');
@@ -398,18 +387,13 @@ function openDetail(id) {
     <div class="detail-row"><span class="k">Timeline</span><span class="v">${esc(q.timeline || '—')}</span></div>
     <div class="detail-row"><span class="k">Message</span></div>
     <div class="detail-message">${esc(q.message)}</div>
-    <div class="detail-row" style="margin-top:20px"><span class="k">Internal Notes</span></div>
-    <textarea class="detail-notes" id="q-notes-${q.id}" placeholder="Add a private note...">${esc(q.notes || '')}</textarea>
-    <button class="btn primary" style="margin-top:10px;padding:10px;font-size:.85rem;width:100%" onclick="saveNotes(${q.id})">Save Notes</button>
+    <div style="display:flex;gap:10px;margin-top:22px;justify-content:flex-end">
+      <a href="mailto:${esc(q.email)}?subject=Re: Your project inquiry" class="btn primary" style="padding:10px 20px;font-size:.85rem">Reply by Email →</a>
+    </div>
   `;
   $('#detailModal').classList.add('show');
 }
-window.saveNotes = async (id) => {
-  const notes = $(`#q-notes-${id}`).value;
-  await api('/api/quotes', { method: 'PATCH', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ id, notes }) });
-  quotes.find(x => x.id === id).notes = notes;
-  showToast('Notes saved');
-};
+$('#detailClose').addEventListener('click', () => $('#detailModal').classList.remove('show'));
 
 /* === PROJECTS === */
 function renderProjects() {
@@ -420,7 +404,7 @@ function renderProjects() {
       <p>${esc(p.description)}</p>
       <div class="tags">${esc(p.tags)}</div>
       <div class="actions">
-        <a href="${esc(p.link)}" target="_blank" class="top-btn" style="flex:1;justify-content:center">Visit</a>
+        <a href="${esc(p.link)}" target="_blank">Visit</a>
         <button class="del proj-del-btn" data-id="${p.id}">Delete</button>
       </div>
     </div>
@@ -428,16 +412,14 @@ function renderProjects() {
 }
 $('#addProjectBtn').addEventListener('click', () => {
   ['p-title','p-desc','p-tags','p-link'].forEach(id => $('#'+id).value = '');
-  $('#p-badge').value = 'LIVE';
   $('#projectModal').classList.add('show');
 });
+$('#projClose').addEventListener('click', () => $('#projectModal').classList.remove('show'));
 $('#saveProjectBtn').addEventListener('click', async () => {
   await api('/api/projects', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({
-    title: $('#p-title').value, description: $('#p-desc').value, tags: $('#p-tags').value,
-    link: $('#p-link').value, badge: $('#p-badge').value
+    title: $('#p-title').value, description: $('#p-desc').value, tags: $('#p-tags').value, link: $('#p-link').value
   })});
-  $('#projectModal').classList.remove('show');
-  showToast('Project added'); loadAll();
+  $('#projectModal').classList.remove('show'); showToast('Project added'); loadAll();
 });
 document.addEventListener('click', e => {
   const delBtn = e.target.closest('.proj-del-btn');
@@ -486,7 +468,6 @@ $('#exportBtn').addEventListener('click', () => {
   const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv], {type:'text/csv'})); a.download = 'quotes.csv'; a.click();
 });
 
-/* Init */
 boot();
 </script>
 </body>
