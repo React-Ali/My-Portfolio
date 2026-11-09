@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<meta name="theme-color" content="#06080f">
 <title>Admin — Ali Hasan</title>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,10 +11,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/style.css">
 <style>
+  /* === Existing Admin Styles === */
   body{background:var(--bg);min-height:100vh}
   body::before{opacity:.4}
-
-  /* ---- Login screen ---- */
   .login-wrap{min-height:100vh;display:grid;place-items:center;padding:24px;position:relative;z-index:1}
   .login-card{width:100%;max-width:420px;background:var(--card);border:1px solid var(--card-brd);border-radius:var(--r);padding:40px 32px;backdrop-filter:blur(16px);box-shadow:0 30px 70px rgba(0,0,0,.5)}
   .login-card .brand{justify-content:center;margin-bottom:28px}
@@ -30,7 +28,6 @@
   .login-err{background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.35);color:#fca5a5;padding:10px 14px;border-radius:10px;font-size:.85rem;margin-bottom:16px;display:none}
   .login-err.show{display:block}
 
-  /* ---- Shell ---- */
   .admin-shell{display:none;min-height:100vh;position:relative;z-index:1}
   .admin-shell.active{display:block}
   .admin-topbar{position:sticky;top:0;z-index:50;background:rgba(6,8,15,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--card-brd);padding:14px 0}
@@ -43,7 +40,6 @@
   .top-btn:hover{background:rgba(99,102,241,.14);border-color:var(--c1)}
   .top-btn.danger:hover{background:rgba(239,68,68,.14);border-color:#ef4444;color:#fca5a5}
 
-  /* ---- Layout ---- */
   .admin-body{display:grid;grid-template-columns:230px 1fr;min-height:calc(100vh - 65px)}
   .admin-side{border-right:1px solid var(--card-brd);padding:26px 14px;background:rgba(255,255,255,.012)}
   .admin-side nav{display:flex;flex-direction:column;gap:4px;position:sticky;top:90px}
@@ -51,10 +47,8 @@
   .side-btn:hover{color:var(--txt);background:rgba(255,255,255,.05)}
   .side-btn.active{color:var(--txt);background:rgba(99,102,241,.16)}
   .side-btn .count{font-size:.72rem;padding:2px 8px;border-radius:50px;background:rgba(34,211,238,.15);color:#7dd3fc;margin-left:auto;font-weight:600}
-  .side-btn svg{width:16px;height:16px;flex-shrink:0}
   .admin-main{padding:32px;min-width:0;overflow-x:hidden}
 
-  /* ---- Tab panels ---- */
   .tab{display:none;animation:fadeIn .3s ease}
   .tab.active{display:block}
   @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
@@ -62,7 +56,7 @@
   .tab-head h1{font-size:1.6rem}
   .tab-head p{color:var(--muted);font-size:.88rem;margin-top:4px}
 
-  /* ---- Stat cards ---- */
+  /* === New Stat Cards === */
   .admin-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:28px}
   .admin-stat{background:var(--card);border:1px solid var(--card-brd);border-radius:14px;padding:20px;transition:.3s;position:relative;overflow:hidden}
   .admin-stat::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad);opacity:.6}
@@ -70,15 +64,12 @@
   .admin-stat .num{font-family:'Space Grotesk';font-size:2rem;font-weight:700;line-height:1}
   .admin-stat .num.accent{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 
-  /* ---- Quotes table ---- */
+  /* === Tables & Controls === */
   .quotes-controls{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
-  .quotes-controls input,
-  .quotes-controls select{padding:10px 14px;border-radius:10px;background:rgba(255,255,255,.04);border:1px solid var(--card-brd);color:var(--txt);font-family:inherit;font-size:.85rem;outline:none;transition:.2s}
-  .quotes-controls input:focus,
-  .quotes-controls select:focus{border-color:var(--c1);background:rgba(99,102,241,.08)}
+  .quotes-controls input,.quotes-controls select{padding:10px 14px;border-radius:10px;background:rgba(255,255,255,.04);border:1px solid var(--card-brd);color:var(--txt);font-family:inherit;font-size:.85rem;outline:none;transition:.2s}
+  .quotes-controls input:focus,.quotes-controls select:focus{border-color:var(--c1);background:rgba(99,102,241,.08)}
   .quotes-controls input{flex:1;min-width:200px}
-  .quotes-controls select{min-width:140px}
-
+  
   .quotes-table{background:var(--card);border:1px solid var(--card-brd);border-radius:14px;overflow:hidden}
   .q-table-wrap{overflow-x:auto}
   table.qt{width:100%;border-collapse:collapse;font-size:.85rem}
@@ -106,13 +97,21 @@
   .q-status-select{padding:6px 8px;border-radius:7px;background:rgba(255,255,255,.06);border:1px solid var(--card-brd);color:var(--txt);font-size:.78rem;font-family:inherit;cursor:pointer}
   .q-status-select:focus{outline:2px solid var(--c2);outline-offset:2px}
 
-  .empty-state{padding:60px 20px;text-align:center;color:var(--muted)}
-  .empty-state svg{width:44px;height:44px;opacity:.4;margin:0 auto 14px;display:block}
+  /* === New Project Cards Grid === */
+  .project-grid-admin{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+  .proj-admin-card{background:var(--card);border:1px solid var(--card-brd);border-radius:14px;padding:20px;display:flex;flex-direction:column;position:relative}
+  .proj-admin-card h4{font-size:1rem;margin-bottom:6px}
+  .proj-admin-card p{font-size:.8rem;color:var(--muted);margin-bottom:14px;flex:1}
+  .proj-admin-card .tags{font-size:.7rem;color:#a5b4fc;margin-bottom:14px}
+  .proj-admin-card .actions{display:flex;gap:8px;margin-top:auto}
+  .proj-admin-card .actions button{flex:1;padding:6px;border-radius:6px;border:1px solid var(--card-brd);background:rgba(255,255,255,.05);color:var(--txt);cursor:pointer;font-size:.75rem}
+  .proj-admin-card .actions button:hover{background:rgba(99,102,241,.15);border-color:var(--c1)}
+  .proj-admin-card .actions button.del:hover{background:rgba(239,68,68,.15);border-color:#ef4444;color:#fca5a5}
 
-  /* Detail drawer */
-  .detail-modal{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:900;display:none;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(6px)}
-  .detail-modal.show{display:flex}
-  .detail-card{background:var(--bg);border:1px solid var(--card-brd);border-radius:18px;max-width:640px;width:100%;max-height:88vh;overflow-y:auto;position:relative}
+  /* === Modals & Settings === */
+  .detail-modal,.confirm-modal{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:900;display:none;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(6px)}
+  .detail-modal.show,.confirm-modal.show{display:flex}
+  .detail-card,.confirm-card{background:var(--bg);border:1px solid var(--card-brd);border-radius:18px;max-width:640px;width:100%;max-height:88vh;overflow-y:auto;position:relative}
   .detail-head{padding:22px 26px;border-bottom:1px solid var(--card-brd);display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
   .detail-head h3{font-size:1.15rem}
   .detail-close{background:none;border:none;color:var(--muted);font-size:1.4rem;cursor:pointer;line-height:1;padding:4px 8px}
@@ -123,64 +122,25 @@
   .detail-row .k{color:var(--muted)}
   .detail-row .v{color:var(--txt);text-align:right;font-weight:500;word-break:break-word}
   .detail-message{background:rgba(255,255,255,.03);border:1px solid var(--card-brd);border-radius:10px;padding:14px 16px;margin-top:16px;color:#a9b3c6;font-size:.9rem;line-height:1.75;white-space:pre-wrap}
+  .detail-notes{width:100%;margin-top:10px;padding:12px;border-radius:10px;background:rgba(251,191,36,.05);border:1px solid rgba(251,191,36,.2);color:var(--txt);font-family:inherit;font-size:.85rem;resize:vertical}
 
-  /* Settings forms */
   .settings-grid{display:grid;gap:20px;max-width:880px}
   .settings-card{background:var(--card);border:1px solid var(--card-brd);border-radius:16px;padding:26px}
-  .settings-card h2{font-size:1.05rem;margin-bottom:18px;display:flex;align-items:center;gap:10px}
+  .settings-card h2{font-size:1.05rem;margin-bottom:18px}
   .settings-card .field{margin-bottom:14px}
-  .settings-card .field:last-child{margin-bottom:0}
-  .settings-note{color:var(--muted);font-size:.82rem;line-height:1.6;margin-top:14px;padding:12px 14px;background:rgba(34,211,238,.05);border:1px solid rgba(34,211,238,.15);border-radius:10px}
+  .settings-card .field label{display:block;font-size:.75rem;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.08em}
+  .settings-card .field input,.settings-card .field textarea{width:100%;padding:12px 14px;border-radius:10px;background:rgba(255,255,255,.04);border:1px solid var(--card-brd);color:var(--txt);font-family:inherit;font-size:.9rem}
+  .save-bar{position:sticky;bottom:20px;display:flex;justify-content:flex-end;gap:10px;padding:14px 18px;background:rgba(6,8,15,.92);border:1px solid var(--card-brd);border-radius:14px;backdrop-filter:blur(12px);margin-top:20px}
 
-  /* Pricing plan editor */
-  .plans-editor{display:grid;gap:16px}
-  .plan-edit{background:rgba(255,255,255,.025);border:1px solid var(--card-brd);border-radius:14px;padding:20px;position:relative}
-  .plan-edit .plan-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;gap:10px;flex-wrap:wrap}
-  .plan-edit .plan-head strong{font-size:.88rem;color:var(--c2);font-family:'Space Grotesk'}
-  .plan-edit .remove-plan{padding:6px 12px;border-radius:7px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);color:#fca5a5;font-size:.75rem;cursor:pointer;font-family:inherit;transition:.2s}
-  .plan-edit .remove-plan:hover{background:rgba(239,68,68,.2)}
-  .plan-edit .plan-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
-  .plan-edit .plan-row.full{grid-template-columns:1fr}
-  .plan-edit .field{margin:0}
-  .plan-edit .field label{font-size:.7rem}
-  .plan-edit .field input,.plan-edit .field textarea{font-size:.85rem;padding:10px 12px}
-  .plan-edit .featured-check{display:flex;align-items:center;gap:8px;margin-top:12px;font-size:.82rem;color:var(--muted);cursor:pointer;user-select:none}
-  .plan-edit .featured-check input{width:auto;margin:0;cursor:pointer;accent-color:var(--c1)}
-
-  .add-plan-btn{padding:12px;border-radius:12px;background:rgba(99,102,241,.08);border:1px dashed rgba(99,102,241,.4);color:#a5b4fc;font-size:.88rem;cursor:pointer;font-family:inherit;transition:.2s}
-  .add-plan-btn:hover{background:rgba(99,102,241,.15);border-style:solid}
-
-  .save-bar{position:sticky;bottom:20px;display:flex;justify-content:flex-end;gap:10px;padding:14px 18px;background:rgba(6,8,15,.92);border:1px solid var(--card-brd);border-radius:14px;backdrop-filter:blur(12px);margin-top:20px;box-shadow:0 8px 30px rgba(0,0,0,.4)}
-  .save-bar .saved-flash{color:var(--c4);font-size:.82rem;display:flex;align-items:center;gap:6px;opacity:0;transition:opacity .3s}
-  .save-bar .saved-flash.show{opacity:1}
-
-  /* Loading skeleton */
-  .skeleton{background:linear-gradient(90deg,rgba(255,255,255,.03),rgba(255,255,255,.07),rgba(255,255,255,.03));background-size:200% 100%;animation:shimmer 1.4s infinite;border-radius:8px}
-  @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
-
-  /* Confirm dialog */
-  .confirm-modal{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:950;display:none;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(6px)}
-  .confirm-modal.show{display:flex}
-  .confirm-card{background:var(--bg);border:1px solid var(--card-brd);border-radius:16px;padding:28px;max-width:400px;width:100%}
-  .confirm-card h3{font-size:1.1rem;margin-bottom:10px}
-  .confirm-card p{color:var(--muted);font-size:.88rem;line-height:1.6;margin-bottom:22px}
-  .confirm-card .actions{display:flex;gap:10px;justify-content:flex-end}
-  .confirm-card .actions button{padding:10px 18px;border-radius:10px;font-size:.85rem;font-weight:600;cursor:pointer;font-family:inherit;border:1px solid var(--card-brd);background:rgba(255,255,255,.05);color:var(--txt);transition:.2s}
-  .confirm-card .actions button.primary{background:linear-gradient(120deg,#ef4444,#dc2626);color:#fff;border-color:transparent}
-  .confirm-card .actions button:hover{opacity:.9}
-
-  /* Mobile */
   @media(max-width:900px){
     .admin-body{grid-template-columns:1fr}
     .admin-side{border-right:none;border-bottom:1px solid var(--card-brd);padding:12px}
     .admin-side nav{flex-direction:row;overflow-x:auto;gap:6px;position:static}
     .side-btn{white-space:nowrap;font-size:.82rem;padding:9px 14px}
-    .side-btn .count{margin-left:4px}
     .admin-main{padding:20px}
-    .tab-head h1{font-size:1.3rem}
-    .plan-edit .plan-row{grid-template-columns:1fr}
     table.qt th,table.qt td{padding:10px}
     table.qt th:nth-child(3),table.qt td:nth-child(3){display:none}
+    .detail-modal,.confirm-modal{padding:10px}
   }
 </style>
 </head>
@@ -198,26 +158,22 @@
         <label for="pw">Password</label>
         <div class="pw-wrap">
           <input type="password" id="pw" autocomplete="current-password" required autofocus>
-          <button type="button" class="pw-toggle" id="pwToggle" aria-label="Show password">👁</button>
+          <button type="button" class="pw-toggle" id="pwToggle">👁</button>
         </div>
       </div>
       <button type="submit" class="btn primary" id="loginBtn">Login →</button>
     </form>
-    <p style="text-align:center;margin-top:20px;font-size:.78rem;color:#5b6478">Forgot the password? Update <code style="background:rgba(255,255,255,.06);padding:2px 6px;border-radius:4px;font-size:.75rem">ADMIN_PASSWORD</code> in Cloudflare Pages → Settings → Environment variables.</p>
   </div>
 </div>
 
-<!-- Dashboard shell -->
+<!-- Dashboard -->
 <div class="admin-shell" id="adminShell">
   <div class="admin-topbar">
     <div class="wrap">
       <a href="/" class="brand"><div class="mark">AH</div><div>Ali Hasan<small>Admin Panel</small></div></a>
       <div class="admin-top-actions">
-        <button class="top-btn" id="exportBtn" title="Export all quotes as CSV">
-          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Export CSV
-        </button>
-        <a href="/" class="top-btn" target="_blank" rel="noopener">View Site</a>
+        <button class="top-btn" id="exportBtn">Export CSV</button>
+        <a href="/" class="top-btn" target="_blank">View Site</a>
         <button class="top-btn danger" id="logoutBtn">Logout</button>
       </div>
     </div>
@@ -226,50 +182,25 @@
   <div class="admin-body">
     <aside class="admin-side">
       <nav>
-        <button class="side-btn active" data-tab="overview">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
-          Overview
-        </button>
-        <button class="side-btn" data-tab="quotes">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          Quotes <span class="count" id="quotesCount">0</span>
-        </button>
-        <button class="side-btn" data-tab="settings">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-          Settings
-        </button>
+        <button class="side-btn active" data-tab="overview">Overview</button>
+        <button class="side-btn" data-tab="quotes">Quotes <span class="count" id="quotesCount">0</span></button>
+        <button class="side-btn" data-tab="projects">Projects <span class="count" id="projectsCount">0</span></button>
+        <button class="side-btn" data-tab="settings">Settings</button>
       </nav>
     </aside>
 
     <main class="admin-main">
       <!-- OVERVIEW -->
       <section class="tab active" id="tab-overview">
-        <div class="tab-head">
-          <div>
-            <h1>Overview</h1>
-            <p>Snapshot of quote activity and pipeline.</p>
-          </div>
-        </div>
+        <div class="tab-head"><div><h1>Dashboard</h1><p>Snapshot of your business.</p></div></div>
         <div class="admin-stats" id="statCards"></div>
-        <div class="tab-head" style="margin-top:10px">
-          <div>
-            <h2 style="font-size:1.15rem">Recent Quotes</h2>
-            <p>The 5 most recent requests</p>
-          </div>
-        </div>
-        <div class="quotes-table"><div class="q-table-wrap" id="recentWrap"></div></div>
       </section>
 
       <!-- QUOTES -->
       <section class="tab" id="tab-quotes">
-        <div class="tab-head">
-          <div>
-            <h1>Quote Requests</h1>
-            <p>Manage every project inquiry in one place.</p>
-          </div>
-        </div>
+        <div class="tab-head"><div><h1>Quote Requests</h1><p>Manage every project inquiry.</p></div></div>
         <div class="quotes-controls">
-          <input type="search" id="qSearch" placeholder="Search by name, email, company, or message…">
+          <input type="search" id="qSearch" placeholder="Search name, email, message…">
           <select id="qStatusFilter">
             <option value="">All statuses</option>
             <option value="new">New</option>
@@ -278,69 +209,74 @@
             <option value="won">Won</option>
             <option value="lost">Lost</option>
           </select>
+          <select id="qSort">
+            <option value="date-desc">Newest First</option>
+            <option value="date-asc">Oldest First</option>
+          </select>
         </div>
         <div class="quotes-table"><div class="q-table-wrap" id="quotesWrap"></div></div>
       </section>
 
+      <!-- PROJECTS -->
+      <section class="tab" id="tab-projects">
+        <div class="tab-head">
+          <div><h1>Projects Manager</h1><p>Add or edit portfolio items dynamically.</p></div>
+          <button class="btn primary" id="addProjectBtn" style="padding:10px 20px;font-size:.85rem">+ Add Project</button>
+        </div>
+        <div class="project-grid-admin" id="projectsGrid"></div>
+      </section>
+
       <!-- SETTINGS -->
       <section class="tab" id="tab-settings">
-        <div class="tab-head">
-          <div>
-            <h1>Settings</h1>
-            <p>Change how the public site reads and how pricing plans appear.</p>
-          </div>
-        </div>
+        <div class="tab-head"><div><h1>Settings</h1><p>Update global site text and pricing.</p></div></div>
         <div class="settings-grid">
           <div class="settings-card">
             <h2>Site Text</h2>
-            <div class="field"><label for="s-heroTitle">Hero Title</label><input id="s-heroTitle" type="text" maxlength="120"></div>
-            <div class="field"><label for="s-availabilityText">Availability Badge</label><input id="s-availabilityText" type="text" maxlength="60"></div>
-            <div class="field"><label for="s-heroSubtitle">Hero Subtitle</label><textarea id="s-heroSubtitle" rows="3" maxlength="400"></textarea></div>
-            <div class="field"><label for="s-contactEmail">Contact Email</label><input id="s-contactEmail" type="email" maxlength="120"></div>
-            <div class="settings-note">
-              These fields update text on the homepage and other pages where the corresponding <code>[data-setting="…"]</code> attribute is used.
-            </div>
-          </div>
-
-          <div class="settings-card">
-            <h2>Pricing Plans</h2>
-            <div class="plans-editor" id="plansEditor"></div>
-            <button type="button" class="add-plan-btn" id="addPlanBtn" style="margin-top:16px;width:100%">+ Add Plan</button>
-            <div class="settings-note">
-              These plans appear on the homepage pricing section and on <a href="/pricing.html" target="_blank" style="color:var(--c2)">/pricing.html</a>. The <strong>Featured</strong> plan is highlighted visually.
-            </div>
+            <div class="field"><label>Hero Title</label><input id="s-heroTitle"></div>
+            <div class="field"><label>Availability Badge</label><input id="s-availabilityText"></div>
+            <div class="field"><label>Hero Subtitle</label><textarea id="s-heroSubtitle" rows="3"></textarea></div>
+            <div class="field"><label>Contact Email</label><input id="s-contactEmail" type="email"></div>
           </div>
         </div>
-
         <div class="save-bar">
-          <span class="saved-flash" id="savedFlash">✓ Saved</span>
-          <button type="button" class="btn ghost" id="resetSettingsBtn">Reset</button>
-          <button type="button" class="btn primary" id="saveSettingsBtn">Save Settings →</button>
+          <button class="btn primary" id="saveSettingsBtn">Save Settings →</button>
         </div>
       </section>
     </main>
   </div>
 </div>
 
-<!-- Detail modal -->
+<!-- Modals -->
 <div class="detail-modal" id="detailModal">
   <div class="detail-card">
-    <div class="detail-head">
-      <h3 id="detailTitle">Quote</h3>
-      <button class="detail-close" id="detailClose" aria-label="Close">×</button>
-    </div>
+    <div class="detail-head"><h3 id="detailTitle">Quote</h3><button class="detail-close" id="detailClose">×</button></div>
     <div class="detail-body" id="detailBody"></div>
   </div>
 </div>
 
-<!-- Confirm modal -->
+<div class="detail-modal" id="projectModal">
+  <div class="detail-card" style="max-width:480px">
+    <div class="detail-head"><h3 id="projModalTitle">Add Project</h3><button class="detail-close" id="projClose">×</button></div>
+    <div class="detail-body">
+      <div class="settings-card" style="padding:0;background:none;border:none">
+        <div class="field"><label>Title</label><input id="p-title" placeholder="Benzo Design"></div>
+        <div class="field"><label>Description</label><textarea id="p-desc" rows="3" placeholder="Short summary..."></textarea></div>
+        <div class="field"><label>Tags (comma separated)</label><input id="p-tags" placeholder="SaaS, Full-Stack, 3 Tools"></div>
+        <div class="field"><label>Link</label><input id="p-link" placeholder="https://..."></div>
+        <div class="field"><label>Badge Text</label><input id="p-badge" value="LIVE"></div>
+      </div>
+      <button class="btn primary" id="saveProjectBtn" style="width:100%;margin-top:20px">Save Project</button>
+    </div>
+  </div>
+</div>
+
 <div class="confirm-modal" id="confirmModal">
   <div class="confirm-card">
     <h3 id="confirmTitle">Are you sure?</h3>
     <p id="confirmText">This action cannot be undone.</p>
-    <div class="actions">
-      <button type="button" id="confirmCancel">Cancel</button>
-      <button type="button" class="primary" id="confirmOk">Delete</button>
+    <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:22px">
+      <button class="top-btn" id="confirmCancel">Cancel</button>
+      <button class="top-btn danger" id="confirmOk" style="background:#ef4444;color:#fff;border:none">Delete</button>
     </div>
   </div>
 </div>
@@ -348,22 +284,14 @@
 <div id="toast" aria-live="polite"></div>
 
 <script>
-/* ============================================================
-   HELPERS
-   ============================================================ */
+/* === HELPERS === */
 const $ = s => document.querySelector(s);
-const $$ = s => document.querySelectorAll(s);
 const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
-
 let toastTimer;
 function showToast(msg) {
-  let t = $('#toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => t.classList.remove('show'), 3400);
+  let t = $('#toast'); t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('show'), 3400);
 }
-
 async function api(path, opts = {}) {
   const res = await fetch(path, { credentials: 'same-origin', ...opts });
   const data = await res.json().catch(() => ({}));
@@ -372,509 +300,193 @@ async function api(path, opts = {}) {
   return data;
 }
 
-/* ============================================================
-   AUTH / BOOT
-   ============================================================ */
-const loginView = $('#loginView');
-const adminShell = $('#adminShell');
-
+/* === AUTH === */
 async function boot() {
-  try {
-    await api('/api/quotes');
-    showDashboard();
-  } catch (e) {
-    if (e.code === 401) showLogin();
-    else {
-      showLogin();
-      $('#loginErr').textContent = e.message || 'Something went wrong.';
-      $('#loginErr').classList.add('show');
-    }
-  }
+  try { await api('/api/quotes'); showDashboard(); }
+  catch (e) { showLogin(); if(e.code !== 401) showToast(e.message); }
 }
-
-function showLogin() {
-  loginView.style.display = 'grid';
-  adminShell.classList.remove('active');
-}
-function showDashboard() {
-  loginView.style.display = 'none';
-  adminShell.classList.add('active');
-  loadAll();
-}
-
-$('#pwToggle').addEventListener('click', () => {
-  const pw = $('#pw');
-  pw.type = pw.type === 'password' ? 'text' : 'password';
-});
-
+function showLogin() { $('#loginView').style.display = 'grid'; $('#adminShell').classList.remove('active'); }
+function showDashboard() { $('#loginView').style.display = 'none'; $('#adminShell').classList.add('active'); loadAll(); }
+$('#pwToggle').addEventListener('click', () => { const pw = $('#pw'); pw.type = pw.type === 'password' ? 'text' : 'password'; });
 $('#loginForm').addEventListener('submit', async e => {
   e.preventDefault();
-  const btn = $('#loginBtn');
-  const err = $('#loginErr');
-  err.classList.remove('show');
-  btn.disabled = true;
-  btn.textContent = 'Logging in…';
   try {
-    await api('/api/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ password: $('#pw').value })
-    });
-    $('#pw').value = '';
-    showDashboard();
-  } catch (e) {
-    err.textContent = e.message === 'unauth' ? 'Invalid password.' : (e.message || 'Login failed.');
-    err.classList.add('show');
-  } finally {
-    btn.disabled = false;
-    btn.textContent = 'Login →';
-  }
+    await api('/api/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ password: $('#pw').value }) });
+    $('#pw').value = ''; showDashboard();
+  } catch (e) { $('#loginErr').textContent = 'Invalid password'; $('#loginErr').classList.add('show'); }
 });
+$('#logoutBtn').addEventListener('click', async () => { await fetch('/api/logout', { method: 'POST' }); showLogin(); });
 
-$('#logoutBtn').addEventListener('click', async () => {
-  await fetch('/api/logout', { method: 'POST', credentials: 'same-origin' });
-  showLogin();
-});
-
-/* ============================================================
-   TABS
-   ============================================================ */
-$$('.side-btn').forEach(btn => btn.addEventListener('click', () => {
-  $$('.side-btn').forEach(b => b.classList.remove('active'));
+/* === TABS === */
+document.querySelectorAll('.side-btn').forEach(btn => btn.addEventListener('click', () => {
+  document.querySelectorAll('.side-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-  $$('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
   $('#tab-' + btn.dataset.tab).classList.add('active');
 }));
 
-/* ============================================================
-   DATA
-   ============================================================ */
-let quotes = [];
-let settings = {};
-
+/* === DATA === */
+let quotes = [], projects = [], settings = {};
 async function loadAll() {
-  try {
-    const [q, s] = await Promise.all([api('/api/quotes'), api('/api/settings')]);
-    quotes = Array.isArray(q) ? q : [];
-    settings = s || {};
-    renderStats();
-    renderRecent();
-    renderQuotes();
-    renderSettingsForm();
-    $('#quotesCount').textContent = quotes.length;
-  } catch (e) {
-    if (e.code === 401) showLogin();
-    else showToast(e.message || 'Failed to load data');
-  }
+  const [q, p, s] = await Promise.all([api('/api/quotes'), api('/api/projects'), api('/api/settings')]);
+  quotes = Array.isArray(q) ? q : []; projects = Array.isArray(p) ? p : []; settings = s || {};
+  $('#quotesCount').textContent = quotes.length; $('#projectsCount').textContent = projects.length;
+  renderStats(); renderQuotes(); renderProjects();
+  
+  $('#s-heroTitle').value = settings.heroTitle || ''; $('#s-heroSubtitle').value = settings.heroSubtitle || '';
+  $('#s-availabilityText').value = settings.availabilityText || ''; $('#s-contactEmail').value = settings.contactEmail || '';
 }
 
-/* ============================================================
-   STATS
-   ============================================================ */
+/* === STATS === */
 function renderStats() {
-  const now = new Date();
-  const monthStart = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-01`;
   const byStatus = quotes.reduce((a, q) => (a[q.status] = (a[q.status] || 0) + 1, a), {});
-  const thisMonth = quotes.filter(q => (q.created_at || '') >= monthStart).length;
-
-  const cards = [
-    { lbl: 'Total Quotes', num: quotes.length, accent: true },
-    { lbl: 'New', num: byStatus.new || 0 },
-    { lbl: 'Won', num: byStatus.won || 0 },
-    { lbl: 'This Month', num: thisMonth }
-  ];
-
-  $('#statCards').innerHTML = cards.map(c => `
-    <div class="admin-stat">
-      <div class="lbl">${c.lbl}</div>
-      <div class="num${c.accent ? ' accent' : ''}">${c.num}</div>
-    </div>
-  `).join('');
-}
-
-/* ============================================================
-   QUOTES — recent + full
-   ============================================================ */
-function fmtDate(s) {
-  if (!s) return '—';
-  const d = new Date(s.includes('T') ? s : s.replace(' ', 'T') + 'Z');
-  if (isNaN(d)) return s;
-  return d.toLocaleString('en-GB', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
-}
-
-function quoteRow(q, compact) {
-  const name = esc(q.name || '—');
-  const email = esc(q.email || '');
-  const company = esc(q.company || '');
-  const plan = esc(q.plan || '—');
-  const type = esc(q.project_type || '');
-  const budget = esc(q.budget || '');
-  const msg = esc(q.message || '');
-  const status = esc(q.status || 'new');
-  const date = fmtDate(q.created_at);
-
-  if (compact) {
-    return `
-      <tr>
-        <td>
-          <div class="who">${name}</div>
-          <div class="meta">${email}</div>
-        </td>
-        <td>
-          <div class="who" style="font-size:.82rem">${plan}</div>
-          <div class="meta">${type}${budget ? ' · ' + budget : ''}</div>
-        </td>
-        <td class="msg-cell"><div class="msg-preview">${msg}</div></td>
-        <td><span class="status-badge ${status}">${status}</span></td>
-        <td><div class="meta" style="white-space:nowrap">${date}</div></td>
-      </tr>
-    `;
-  }
-
-  return `
-    <tr data-id="${q.id}">
-      <td><div class="meta" style="white-space:nowrap">${date}</div></td>
-      <td>
-        <div class="who">${name}</div>
-        <div class="meta">${email}</div>
-        ${company ? `<div class="meta">${company}</div>` : ''}
-      </td>
-      <td>
-        <div class="who" style="font-size:.82rem">${plan}</div>
-        <div class="meta">${type}</div>
-        ${budget ? `<div class="meta">${budget}</div>` : ''}
-      </td>
-      <td class="msg-cell"><div class="msg-preview">${msg}</div></td>
-      <td>
-        <select class="q-status-select" data-id="${q.id}">
-          ${['new','contacted','quoted','won','lost'].map(s =>
-            `<option value="${s}" ${s === status ? 'selected' : ''}>${s}</option>`
-          ).join('')}
-        </select>
-      </td>
-      <td>
-        <div class="row-actions">
-          <button class="view-btn" data-id="${q.id}">View</button>
-          <button class="del del-btn" data-id="${q.id}">Delete</button>
-        </div>
-      </td>
-    </tr>
+  const wonValue = quotes.filter(q => q.status === 'won').length;
+  $('#statCards').innerHTML = `
+    <div class="admin-stat"><div class="lbl">Total Quotes</div><div class="num accent">${quotes.length}</div></div>
+    <div class="admin-stat"><div class="lbl">New Inquiries</div><div class="num">${byStatus.new || 0}</div></div>
+    <div class="admin-stat"><div class="lbl">Closed (Won)</div><div class="num" style="color:#34d399">${wonValue}</div></div>
+    <div class="admin-stat"><div class="lbl">Active Projects</div><div class="num">${projects.length}</div></div>
   `;
 }
 
-function emptyRow(cols, msg) {
-  return `
-    <tr><td colspan="${cols}">
-      <div class="empty-state">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-        ${msg}
-      </div>
-    </td></tr>
-  `;
-}
-
-function renderRecent() {
-  const list = quotes.slice(0, 5);
-  const wrap = $('#recentWrap');
-  if (!list.length) {
-    wrap.innerHTML = `<table class="qt"><tbody>${emptyRow(5, 'No quotes yet. Share your contact page to start receiving requests.')}</tbody></table>`;
-    return;
-  }
-  wrap.innerHTML = `
-    <table class="qt">
-      <thead><tr><th>From</th><th>Project</th><th>Message</th><th>Status</th><th>When</th></tr></thead>
-      <tbody>${list.map(q => quoteRow(q, true)).join('')}</tbody>
-    </table>
-  `;
-}
-
+/* === QUOTES === */
+function fmtDate(s) { if(!s) return '—'; const d = new Date(s); return isNaN(d) ? s : d.toLocaleString('en-GB', { day:'2-digit', month:'short', year:'numeric' }); }
 function renderQuotes() {
-  const term = ($('#qSearch').value || '').trim().toLowerCase();
-  const status = $('#qStatusFilter').value;
-
-  const filtered = quotes.filter(q => {
-    if (status && q.status !== status) return false;
-    if (!term) return true;
-    return [q.name, q.email, q.company, q.message, q.plan, q.project_type, q.budget]
-      .some(v => (v || '').toLowerCase().includes(term));
-  });
-
-  const wrap = $('#quotesWrap');
-  if (!filtered.length) {
-    wrap.innerHTML = `<table class="qt"><tbody>${emptyRow(6, quotes.length ? 'No quotes match your filters.' : 'No quotes yet.')}</tbody></table>`;
-    return;
-  }
-
-  wrap.innerHTML = `
-    <table class="qt">
-      <thead><tr><th>Date</th><th>Contact</th><th>Project</th><th>Message</th><th>Status</th><th>Actions</th></tr></thead>
-      <tbody>${filtered.map(q => quoteRow(q, false)).join('')}</tbody>
-    </table>
-  `;
+  const term = $('#qSearch').value.toLowerCase(); const status = $('#qStatusFilter').value; const sort = $('#qSort').value;
+  let filtered = quotes.filter(q => (!status || q.status === status) && (!term || JSON.stringify(q).toLowerCase().includes(term)));
+  if (sort === 'date-desc') filtered.sort((a,b) => new Date(b.created_at) - new Date(a.created_at));
+  if (sort === 'date-asc') filtered.sort((a,b) => new Date(a.created_at) - new Date(b.created_at));
+  
+  if(!filtered.length) { $('#quotesWrap').innerHTML = `<table class="qt"><tr><td style="text-align:center;padding:40px;color:var(--muted)">No quotes found.</td></tr></table>`; return; }
+  
+  $('#quotesWrap').innerHTML = `
+    <table class="qt"><thead><tr><th>Date</th><th>Contact</th><th>Message</th><th>Status</th><th>Actions</th></tr></thead>
+    <tbody>${filtered.map(q => `
+      <tr>
+        <td class="meta">${fmtDate(q.created_at)}</td>
+        <td><div class="who">${esc(q.name)}</div><div class="meta">${esc(q.email)}</div></td>
+        <td class="msg-cell"><div class="msg-preview">${esc(q.message)}</div></td>
+        <td><select class="q-status-select" data-id="${q.id}">${['new','contacted','quoted','won','lost'].map(s => `<option value="${s}" ${s===q.status?'selected':''}>${s}</option>`).join('')}</select></td>
+        <td><div class="row-actions"><button class="view-btn" data-id="${q.id}">View</button><button class="del del-btn" data-id="${q.id}">Delete</button></div></td>
+      </tr>
+    `).join('')}</tbody></table>`;
 }
-
-/* Search & filter */
 $('#qSearch').addEventListener('input', renderQuotes);
 $('#qStatusFilter').addEventListener('change', renderQuotes);
+$('#qSort').addEventListener('change', renderQuotes);
 
-/* Delegated actions on quote tables */
 document.addEventListener('click', e => {
   const viewBtn = e.target.closest('.view-btn');
-  if (viewBtn) { openDetail(viewBtn.dataset.id); return; }
+  if (viewBtn) { openDetail(Number(viewBtn.dataset.id)); return; }
   const delBtn = e.target.closest('.del-btn');
-  if (delBtn) { confirmDelete(delBtn.dataset.id); return; }
+  if (delBtn) { confirmDelete('quote', Number(delBtn.dataset.id)); return; }
 });
-
 document.addEventListener('change', async e => {
-  const sel = e.target.closest('.q-status-select');
-  if (!sel) return;
-  const id = Number(sel.dataset.id);
-  const status = sel.value;
-  try {
-    await api('/api/quotes', {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id, status })
-    });
-    const q = quotes.find(x => x.id === id);
-    if (q) q.status = status;
-    renderStats();
-    renderRecent();
-    showToast('Status updated');
-  } catch (err) {
-    showToast('Could not update status');
-    loadAll();
-  }
+  if(!e.target.classList.contains('q-status-select')) return;
+  const id = Number(e.target.dataset.id);
+  await api('/api/quotes', { method: 'PATCH', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ id, status: e.target.value }) });
+  quotes.find(x => x.id === id).status = e.target.value; renderStats(); showToast('Status updated');
 });
 
-/* Detail modal */
 function openDetail(id) {
-  const q = quotes.find(x => x.id === id);
-  if (!q) return;
-  $('#detailTitle').textContent = q.name || 'Quote';
+  const q = quotes.find(x => x.id === id); if (!q) return;
+  $('#detailTitle').textContent = q.name;
   $('#detailBody').innerHTML = `
-    <div class="detail-row"><span class="k">Submitted</span><span class="v">${fmtDate(q.created_at)}</span></div>
     <div class="detail-row"><span class="k">Email</span><span class="v"><a href="mailto:${esc(q.email)}" style="color:var(--c2)">${esc(q.email)}</a></span></div>
-    ${q.phone ? `<div class="detail-row"><span class="k">Phone</span><span class="v"><a href="tel:${esc(q.phone)}" style="color:var(--c2)">${esc(q.phone)}</a></span></div>` : ''}
-    ${q.company ? `<div class="detail-row"><span class="k">Company</span><span class="v">${esc(q.company)}</span></div>` : ''}
-    <div class="detail-row"><span class="k">Project Type</span><span class="v">${esc(q.project_type || '—')}</span></div>
-    <div class="detail-row"><span class="k">Plan</span><span class="v">${esc(q.plan || '—')}</span></div>
+    ${q.phone ? `<div class="detail-row"><span class="k">Phone</span><span class="v">${esc(q.phone)}</span></div>` : ''}
     <div class="detail-row"><span class="k">Budget</span><span class="v">${esc(q.budget || '—')}</span></div>
     <div class="detail-row"><span class="k">Timeline</span><span class="v">${esc(q.timeline || '—')}</span></div>
-    <div class="detail-row"><span class="k">Status</span><span class="v"><span class="status-badge ${esc(q.status)}">${esc(q.status)}</span></span></div>
-    <div style="margin-top:20px">
-      <div style="color:var(--muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px">Message</div>
-      <div class="detail-message">${esc(q.message)}</div>
-    </div>
-    <div style="display:flex;gap:10px;margin-top:22px;justify-content:flex-end">
-      <a href="mailto:${esc(q.email)}?subject=Re: Your project inquiry" class="btn primary" style="padding:10px 20px;font-size:.85rem">Reply by Email →</a>
-    </div>
+    <div class="detail-row"><span class="k">Message</span></div>
+    <div class="detail-message">${esc(q.message)}</div>
+    <div class="detail-row" style="margin-top:20px"><span class="k">Internal Notes</span></div>
+    <textarea class="detail-notes" id="q-notes-${q.id}" placeholder="Add a private note...">${esc(q.notes || '')}</textarea>
+    <button class="btn primary" style="margin-top:10px;padding:10px;font-size:.85rem;width:100%" onclick="saveNotes(${q.id})">Save Notes</button>
   `;
   $('#detailModal').classList.add('show');
 }
-$('#detailClose').addEventListener('click', () => $('#detailModal').classList.remove('show'));
-$('#detailModal').addEventListener('click', e => {
-  if (e.target === $('#detailModal')) $('#detailModal').classList.remove('show');
-});
+window.saveNotes = async (id) => {
+  const notes = $(`#q-notes-${id}`).value;
+  await api('/api/quotes', { method: 'PATCH', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ id, notes }) });
+  quotes.find(x => x.id === id).notes = notes;
+  showToast('Notes saved');
+};
 
-/* Delete with confirm */
-let pendingDeleteId = null;
-function confirmDelete(id) {
-  const q = quotes.find(x => x.id === id);
-  if (!q) return;
-  pendingDeleteId = id;
-  $('#confirmTitle').textContent = 'Delete this quote?';
-  $('#confirmText').textContent = `"${q.name}" (${q.email}) will be permanently removed. This cannot be undone.`;
-  $('#confirmModal').classList.add('show');
-}
-$('#confirmCancel').addEventListener('click', () => {
-  $('#confirmModal').classList.remove('show');
-  pendingDeleteId = null;
-});
-$('#confirmOk').addEventListener('click', async () => {
-  if (!pendingDeleteId) return;
-  const id = pendingDeleteId;
-  pendingDeleteId = null;
-  $('#confirmModal').classList.remove('show');
-  try {
-    await api('/api/quotes', {
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id })
-    });
-    quotes = quotes.filter(q => q.id !== id);
-    $('#quotesCount').textContent = quotes.length;
-    renderStats();
-    renderRecent();
-    renderQuotes();
-    showToast('Quote deleted');
-  } catch {
-    showToast('Could not delete quote');
-  }
-});
-
-/* ============================================================
-   CSV EXPORT
-   ============================================================ */
-$('#exportBtn').addEventListener('click', () => {
-  if (!quotes.length) { showToast('No quotes to export'); return; }
-  const headers = ['Date','Name','Email','Phone','Company','Project Type','Plan','Budget','Timeline','Status','Message'];
-  const rows = quotes.map(q => [
-    q.created_at, q.name, q.email, q.phone, q.company,
-    q.project_type, q.plan, q.budget, q.timeline, q.status, q.message
-  ]);
-  const csv = [headers, ...rows].map(row =>
-    row.map(cell => `"${String(cell ?? '').replace(/"/g, '""')}"`).join(',')
-  ).join('\n');
-  const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = `quotes-${new Date().toISOString().slice(0, 10)}.csv`;
-  a.click();
-  URL.revokeObjectURL(url);
-  showToast(`Exported ${quotes.length} quotes`);
-});
-
-/* ============================================================
-   SETTINGS — plans editor
-   ============================================================ */
-let draftPlans = [];
-
-function renderSettingsForm() {
-  $('#s-heroTitle').value = settings.heroTitle || '';
-  $('#s-heroSubtitle').value = settings.heroSubtitle || '';
-  $('#s-availabilityText').value = settings.availabilityText || '';
-  $('#s-contactEmail').value = settings.contactEmail || '';
-
-  try {
-    draftPlans = JSON.parse(settings.pricingPlans || '[]');
-    if (!Array.isArray(draftPlans)) draftPlans = [];
-  } catch { draftPlans = []; }
-
-  renderPlansEditor();
-}
-
-function renderPlansEditor() {
-  const wrap = $('#plansEditor');
-  if (!draftPlans.length) {
-    wrap.innerHTML = '<div style="padding:22px;text-align:center;color:var(--muted);font-size:.85rem">No plans yet. Click <strong>Add Plan</strong> below.</div>';
-    return;
-  }
-  wrap.innerHTML = draftPlans.map((p, i) => `
-    <div class="plan-edit" data-i="${i}">
-      <div class="plan-head">
-        <strong>Plan ${i + 1}</strong>
-        <button type="button" class="remove-plan" data-remove="${i}">Remove</button>
+/* === PROJECTS === */
+function renderProjects() {
+  if(!projects.length) { $('#projectsGrid').innerHTML = `<p style="color:var(--muted)">No projects yet.</p>`; return; }
+  $('#projectsGrid').innerHTML = projects.map(p => `
+    <div class="proj-admin-card">
+      <h4>${esc(p.title)}</h4>
+      <p>${esc(p.description)}</p>
+      <div class="tags">${esc(p.tags)}</div>
+      <div class="actions">
+        <a href="${esc(p.link)}" target="_blank" class="top-btn" style="flex:1;justify-content:center">Visit</a>
+        <button class="del proj-del-btn" data-id="${p.id}">Delete</button>
       </div>
-      <div class="plan-row">
-        <div class="field"><label>Name</label><input data-field="name" value="${esc(p.name || '')}" placeholder="Professional"></div>
-        <div class="field"><label>Price</label><input data-field="price" value="${esc(p.price || '')}" placeholder="$799"></div>
-      </div>
-      <div class="plan-row">
-        <div class="field"><label>Suffix</label><input data-field="suffix" value="${esc(p.suffix || '')}" placeholder="starting / custom"></div>
-        <div class="field"><label>Button Text</label><input data-field="cta" value="${esc(p.cta || '')}" placeholder="Get Started"></div>
-      </div>
-      <div class="plan-row full">
-        <div class="field"><label>Description</label><input data-field="desc" value="${esc(p.desc || '')}" placeholder="Short one-line summary"></div>
-      </div>
-      <div class="plan-row full">
-        <div class="field"><label>Features (one per line)</label><textarea data-field="features" rows="5">${esc((p.features || []).join('\n'))}</textarea></div>
-      </div>
-      <label class="featured-check">
-        <input type="checkbox" data-field="featured" ${p.featured ? 'checked' : ''}>
-        Mark as featured (highlighted on the site)
-      </label>
     </div>
   `).join('');
 }
-
-$('#addPlanBtn').addEventListener('click', () => {
-  draftPlans.push({
-    name: 'New Plan',
-    price: '$0',
-    suffix: 'starting',
-    desc: 'Describe this plan.',
-    cta: 'Get Started',
-    featured: false,
-    features: ['Feature one', 'Feature two']
-  });
-  renderPlansEditor();
+$('#addProjectBtn').addEventListener('click', () => {
+  ['p-title','p-desc','p-tags','p-link'].forEach(id => $('#'+id).value = '');
+  $('#p-badge').value = 'LIVE';
+  $('#projectModal').classList.add('show');
+});
+$('#saveProjectBtn').addEventListener('click', async () => {
+  await api('/api/projects', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({
+    title: $('#p-title').value, description: $('#p-desc').value, tags: $('#p-tags').value,
+    link: $('#p-link').value, badge: $('#p-badge').value
+  })});
+  $('#projectModal').classList.remove('show');
+  showToast('Project added'); loadAll();
+});
+document.addEventListener('click', e => {
+  const delBtn = e.target.closest('.proj-del-btn');
+  if (delBtn) { confirmDelete('project', Number(delBtn.dataset.id)); return; }
 });
 
-/* Live bind inputs to draftPlans */
-$('#plansEditor').addEventListener('input', e => {
-  const box = e.target.closest('.plan-edit');
-  if (!box) return;
-  const i = Number(box.dataset.i);
-  const plan = draftPlans[i];
-  if (!plan) return;
-  const field = e.target.dataset.field;
-  if (!field) return;
-  if (field === 'features') {
-    plan.features = e.target.value.split('\n').map(s => s.trim()).filter(Boolean);
-  } else if (field === 'featured') {
-    plan.featured = e.target.checked;
+/* === CONFIRM DELETE === */
+let pendingAction = null;
+function confirmDelete(type, id) {
+  pendingAction = { type, id };
+  $('#confirmTitle').textContent = `Delete ${type}?`;
+  $('#confirmText').textContent = `This action cannot be undone.`;
+  $('#confirmModal').classList.add('show');
+}
+$('#confirmCancel').addEventListener('click', () => $('#confirmModal').classList.remove('show'));
+$('#confirmOk').addEventListener('click', async () => {
+  if(!pendingAction) return;
+  const { type, id } = pendingAction;
+  $('#confirmModal').classList.remove('show');
+  
+  if(type === 'quote') {
+    await api('/api/quotes', { method: 'DELETE', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ id }) });
+    quotes = quotes.filter(q => q.id !== id); renderQuotes(); renderStats();
   } else {
-    plan[field] = e.target.value;
+    await api('/api/projects', { method: 'DELETE', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ id }) });
+    projects = projects.filter(p => p.id !== id); renderProjects(); renderStats();
   }
+  showToast('Deleted'); pendingAction = null;
 });
 
-$('#plansEditor').addEventListener('change', e => {
-  if (e.target.dataset.field === 'featured') {
-    const box = e.target.closest('.plan-edit');
-    const i = Number(box.dataset.i);
-    if (draftPlans[i]) draftPlans[i].featured = e.target.checked;
-  }
-});
-
-$('#plansEditor').addEventListener('click', e => {
-  const btn = e.target.closest('[data-remove]');
-  if (!btn) return;
-  const i = Number(btn.dataset.remove);
-  draftPlans.splice(i, 1);
-  renderPlansEditor();
-});
-
-/* Save settings */
+/* === SETTINGS === */
 $('#saveSettingsBtn').addEventListener('click', async () => {
-  const btn = $('#saveSettingsBtn');
-  const flash = $('#savedFlash');
-  btn.disabled = true;
-  btn.textContent = 'Saving…';
-  try {
-    await api('/api/settings', {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        heroTitle: $('#s-heroTitle').value,
-        heroSubtitle: $('#s-heroSubtitle').value,
-        availabilityText: $('#s-availabilityText').value,
-        contactEmail: $('#s-contactEmail').value,
-        pricingPlans: JSON.stringify(draftPlans)
-      })
-    });
-    flash.classList.add('show');
-    setTimeout(() => flash.classList.remove('show'), 2200);
-    showToast('Settings saved');
-    // refresh cache
-    settings = await api('/api/settings');
-  } catch (e) {
-    showToast(e.message || 'Could not save settings');
-  } finally {
-    btn.disabled = false;
-    btn.textContent = 'Save Settings →';
-  }
+  await api('/api/settings', { method: 'PUT', headers: {'Content-Type':'application/json'}, body: JSON.stringify({
+    heroTitle: $('#s-heroTitle').value, heroSubtitle: $('#s-heroSubtitle').value,
+    availabilityText: $('#s-availabilityText').value, contactEmail: $('#s-contactEmail').value
+  })});
+  showToast('Settings saved');
 });
 
-$('#resetSettingsBtn').addEventListener('click', () => {
-  renderSettingsForm();
-  showToast('Reverted to last saved values');
+/* === CSV EXPORT === */
+$('#exportBtn').addEventListener('click', () => {
+  if(!quotes.length) return showToast('No quotes');
+  const csv = ['Date,Name,Email,Phone,Budget,Status,Message'].concat(quotes.map(q => 
+    `"${q.created_at}","${q.name}","${q.email}","${q.phone}","${q.budget}","${q.status}","${q.message.replace(/"/g,'""')}"`
+  )).join('\n');
+  const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv], {type:'text/csv'})); a.download = 'quotes.csv'; a.click();
 });
 
-/* ============================================================
-   INIT
-   ============================================================ */
+/* Init */
 boot();
 </script>
 </body>
