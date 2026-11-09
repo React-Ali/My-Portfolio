@@ -499,3 +499,12 @@ form.contact-form .btn{width:100%;justify-content:center}
   .pricing-card{padding:28px 22px}
   .pricing-card .price{font-size:2.2rem}
 }
+/* Force native dropdown menus to be dark */
+select {
+  color-scheme: dark;
+}
+select option {
+  background-color: #0a0e1a; /* dark background */
+  color: #eef1f8; /* light text */
+  padding: 10px;
+}
