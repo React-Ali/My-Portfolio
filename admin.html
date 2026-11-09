@@ -317,16 +317,39 @@ document.querySelectorAll('.side-btn').forEach(btn => btn.addEventListener('clic
   $('#tab-' + btn.dataset.tab).classList.add('active');
 }));
 
-/* === DATA === */
+/* === DATA (LOAD INDEPENDENTLY) === */
 let quotes = [], projects = [], settings = {};
+
 async function loadAll() {
-  const [q, p, s] = await Promise.all([api('/api/quotes'), api('/api/projects'), api('/api/settings')]);
-  quotes = Array.isArray(q) ? q : []; projects = Array.isArray(p) ? p : []; settings = s || {};
-  $('#quotesCount').textContent = quotes.length; $('#projectsCount').textContent = projects.length;
-  renderStats(); renderQuotes(); renderProjects();
-  
-  $('#s-heroTitle').value = settings.heroTitle || ''; $('#s-heroSubtitle').value = settings.heroSubtitle || '';
-  $('#s-availabilityText').value = settings.availabilityText || ''; $('#s-contactEmail').value = settings.contactEmail || '';
+  // 1. Load Quotes
+  try {
+    const q = await api('/api/quotes');
+    quotes = Array.isArray(q) ? q : [];
+    $('#quotesCount').textContent = quotes.length;
+    renderStats();
+    renderQuotes();
+  } catch (e) { console.error("Quotes failed to load:", e); }
+
+  // 2. Load Projects
+  try {
+    const p = await api('/api/projects');
+    projects = Array.isArray(p) ? p : [];
+    $('#projectsCount').textContent = projects.length;
+    renderProjects();
+    renderStats();
+  } catch (e) { 
+    console.error("Projects failed to load:", e); 
+    $('#projectsGrid').innerHTML = `<p style="color:#ef4444;padding:20px">Failed to load projects. Check console/database.</p>`;
+  }
+
+  // 3. Load Settings
+  try {
+    settings = await api('/api/settings') || {};
+    $('#s-heroTitle').value = settings.heroTitle || ''; 
+    $('#s-heroSubtitle').value = settings.heroSubtitle || '';
+    $('#s-availabilityText').value = settings.availabilityText || ''; 
+    $('#s-contactEmail').value = settings.contactEmail || '';
+  } catch (e) { console.error("Settings failed to load:", e); }
 }
 
 /* === STATS === */
