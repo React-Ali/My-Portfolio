@@ -15,8 +15,6 @@
   body { background: var(--bg); min-height: 100vh; font-family: 'Inter', sans-serif; display: none; }
   body.loaded { display: block; }
   body::before { opacity: 0.3; }
-  
-  /* Loading Screen (Fixes the blink) */
   #loadingView { position: fixed; inset: 0; display: grid; place-items: center; background: var(--bg); z-index: 9999; }
   .spinner { width: 40px; height: 40px; border: 3px solid rgba(255,255,255,0.1); border-top-color: var(--c2); border-radius: 50%; animation: spin 1s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg); } }
@@ -36,7 +34,6 @@
   .login-err { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); color: #fca5a5; padding: 12px; border-radius: 10px; font-size: 0.85rem; margin-bottom: 16px; display: none; text-align: center; }
   .login-err.show { display: block; }
 
-  /* === Admin Shell === */
   .admin-shell { display: none; min-height: 100vh; position: relative; z-index: 1; }
   .admin-shell.active { display: block; }
   .admin-topbar { position: sticky; top: 0; z-index: 50; background: rgba(6,8,15,0.85); backdrop-filter: blur(16px); border-bottom: 1px solid var(--card-brd); padding: 16px 0; }
@@ -55,7 +52,6 @@
   .side-btn .count { font-size: 0.75rem; padding: 3px 9px; border-radius: 50px; background: rgba(34,211,238,0.15); color: #7dd3fc; margin-left: auto; font-weight: 600; }
   .admin-main { padding: 40px; min-width: 0; }
 
-  /* === Tabs & Typography === */
   .tab { display: none; animation: fadeIn 0.4s ease; }
   .tab.active { display: block; }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
@@ -63,7 +59,6 @@
   .tab-head h1 { font-size: 1.8rem; font-family: 'Space Grotesk', sans-serif; letter-spacing: -0.02em; }
   .tab-head p { color: var(--muted); font-size: 0.9rem; margin-top: 6px; }
 
-  /* === Stat Cards === */
   .admin-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 40px; }
   .admin-stat { background: linear-gradient(160deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01)); border: 1px solid var(--card-brd); border-radius: 16px; padding: 24px; position: relative; overflow: hidden; }
   .admin-stat::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--grad); opacity: 0.8; }
@@ -71,7 +66,6 @@
   .admin-stat .num { font-family: 'Space Grotesk', sans-serif; font-size: 2.4rem; font-weight: 700; line-height: 1; }
   .admin-stat .num.accent { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
 
-  /* === Tables & Controls === */
   .quotes-controls { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 24px; }
   .quotes-controls input, .quotes-controls select { padding: 12px 16px; border-radius: 10px; background: rgba(255,255,255,0.03); border: 1px solid var(--card-brd); color: var(--txt); font-family: inherit; font-size: 0.9rem; outline: none; transition: 0.2s; }
   .quotes-controls input:focus, .quotes-controls select:focus { border-color: var(--c1); background: rgba(99,102,241,0.08); }
@@ -89,13 +83,6 @@
   table.qt td .meta { color: var(--muted); font-size: 0.8rem; line-height: 1.5; }
   table.qt td .msg-preview { color: #a9b3c6; line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
-  .status-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; border: 1px solid; }
-  .status-badge.new { color: #7dd3fc; background: rgba(34,211,238,0.1); border-color: rgba(34,211,238,0.3); }
-  .status-badge.contacted { color: #fbbf24; background: rgba(251,191,36,0.1); border-color: rgba(251,191,36,0.3); }
-  .status-badge.quoted { color: #a855f7; background: rgba(168,85,247,0.1); border-color: rgba(168,85,247,0.3); }
-  .status-badge.won { color: #34d399; background: rgba(52,211,153,0.1); border-color: rgba(52,211,153,0.3); }
-  .status-badge.lost { color: #f87171; background: rgba(248,113,113,0.1); border-color: rgba(248,113,113,0.3); }
-
   .row-actions { display: flex; gap: 8px; flex-wrap: wrap; }
   .row-actions button { padding: 7px 14px; border-radius: 8px; background: rgba(255,255,255,0.05); border: 1px solid var(--card-brd); color: var(--txt); font-size: 0.8rem; font-weight: 500; cursor: pointer; transition: 0.2s; font-family: inherit; }
   .row-actions button:hover { background: rgba(99,102,241,0.15); border-color: var(--c1); }
@@ -104,19 +91,18 @@
   .q-status-select { padding: 8px 10px; border-radius: 8px; background: rgba(255,255,255,0.05); border: 1px solid var(--card-brd); color: var(--txt); font-size: 0.8rem; font-family: inherit; cursor: pointer; outline: none; }
   .q-status-select:focus { border-color: var(--c2); }
 
-  /* === Projects Grid === */
   .project-grid-admin { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
   .proj-admin-card { background: linear-gradient(160deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01)); border: 1px solid var(--card-brd); border-radius: 16px; padding: 24px; display: flex; flex-direction: column; position: relative; transition: 0.3s; }
   .proj-admin-card:hover { border-color: rgba(99,102,241,0.4); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
   .proj-admin-card h4 { font-size: 1.1rem; margin-bottom: 8px; font-family: 'Space Grotesk', sans-serif; }
   .proj-admin-card p { font-size: 0.85rem; color: var(--muted); margin-bottom: 16px; flex: 1; line-height: 1.6; }
   .proj-admin-card .tags { font-size: 0.75rem; color: #a5b4fc; margin-bottom: 20px; display: flex; flex-wrap: wrap; gap: 6px; }
-  .proj-admin-card .actions { display: flex; gap: 10px; margin-top: auto; }
-  .proj-admin-card .actions button, .proj-admin-card .actions a { flex: 1; padding: 9px; border-radius: 8px; border: 1px solid var(--card-brd); background: rgba(255,255,255,0.04); color: var(--txt); cursor: pointer; font-size: 0.8rem; font-weight: 500; text-align: center; text-decoration: none; transition: 0.2s; font-family: inherit; }
+  .proj-admin-card .actions { display: flex; gap: 8px; margin-top: auto; }
+  .proj-admin-card .actions button, .proj-admin-card .actions a { flex: 1; padding: 8px 4px; border-radius: 8px; border: 1px solid var(--card-brd); background: rgba(255,255,255,0.04); color: var(--txt); cursor: pointer; font-size: 0.75rem; font-weight: 500; text-align: center; text-decoration: none; transition: 0.2s; font-family: inherit; }
   .proj-admin-card .actions button:hover, .proj-admin-card .actions a:hover { background: rgba(99,102,241,0.15); border-color: var(--c1); }
   .proj-admin-card .actions button.del:hover { background: rgba(239,68,68,0.15); border-color: #ef4444; color: #fca5a5; }
+  .proj-admin-card .actions button.edit:hover { background: rgba(251,191,36,0.15); border-color: #fbbf24; color: #fbbf24; }
 
-  /* === Settings & Pricing Editor === */
   .settings-grid { display: grid; gap: 24px; max-width: 900px; }
   .settings-card { background: rgba(255,255,255,0.02); border: 1px solid var(--card-brd); border-radius: 16px; padding: 30px; }
   .settings-card h2 { font-size: 1.15rem; margin-bottom: 24px; font-family: 'Space Grotesk', sans-serif; display: flex; align-items: center; gap: 10px; }
@@ -144,7 +130,6 @@
   .save-bar { position: sticky; bottom: 24px; display: flex; justify-content: flex-end; gap: 12px; padding: 16px 20px; background: rgba(6,8,15,0.9); border: 1px solid var(--card-brd); border-radius: 16px; backdrop-filter: blur(12px); margin-top: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
   .save-bar .btn { padding: 14px 30px; font-size: 0.95rem; }
 
-  /* === Modals === */
   .detail-modal, .confirm-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 999; display: none; align-items: center; justify-content: center; padding: 24px; backdrop-filter: blur(8px); }
   .detail-modal.show, .confirm-modal.show { display: flex; }
   .detail-card, .confirm-card { background: #0a0e1a; border: 1px solid var(--card-brd); border-radius: 20px; max-width: 640px; width: 100%; max-height: 88vh; overflow-y: auto; position: relative; box-shadow: 0 40px 100px rgba(0,0,0,0.8); animation: popIn 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
@@ -160,7 +145,6 @@
   .detail-row .v { color: var(--txt); text-align: right; font-weight: 500; word-break: break-word; }
   .detail-message { background: rgba(255,255,255,0.03); border: 1px solid var(--card-brd); border-radius: 12px; padding: 20px; margin-top: 16px; color: #d1d5db; font-size: 0.95rem; line-height: 1.7; white-space: pre-wrap; }
 
-  /* === Mobile Responsiveness === */
   @media(max-width: 900px) {
     .admin-topbar .wrap { flex-direction: column; align-items: flex-start; gap: 10px; }
     .admin-top-actions { width: 100%; justify-content: space-between; }
@@ -172,7 +156,7 @@
     .admin-main { padding: 20px; }
     .tab-head h1 { font-size: 1.5rem; }
     .quotes-controls input, .quotes-controls select { width: 100%; }
-    table.qt th:nth-child(3), table.qt td:nth-child(3) { display: none; } /* Hide message preview on mobile */
+    table.qt th:nth-child(3), table.qt td:nth-child(3) { display: none; }
     .plan-edit .plan-row { grid-template-columns: 1fr; }
     .detail-card { margin: 10px; }
   }
@@ -180,10 +164,8 @@
 </head>
 <body>
 
-<!-- Loading Spinner (Stops the blink) -->
 <div id="loadingView"><div class="spinner"></div></div>
 
-<!-- Login -->
 <div class="login-wrap" id="loginView">
   <div class="login-card">
     <a href="/" class="brand"><div class="mark">AH</div><div>Ali Hasan<small>Admin</small></div></a>
@@ -203,7 +185,6 @@
   </div>
 </div>
 
-<!-- Dashboard -->
 <div class="admin-shell" id="adminShell">
   <div class="admin-topbar">
     <div class="wrap">
@@ -227,13 +208,11 @@
     </aside>
 
     <main class="admin-main">
-      <!-- OVERVIEW -->
       <section class="tab active" id="tab-overview">
         <div class="tab-head"><div><h1>Dashboard</h1><p>Snapshot of your business.</p></div></div>
         <div class="admin-stats" id="statCards"></div>
       </section>
 
-      <!-- QUOTES -->
       <section class="tab" id="tab-quotes">
         <div class="tab-head"><div><h1>Quote Requests</h1><p>Manage every project inquiry.</p></div></div>
         <div class="quotes-controls">
@@ -250,21 +229,17 @@
         <div class="quotes-table"><div class="q-table-wrap" id="quotesWrap"></div></div>
       </section>
 
-      <!-- PROJECTS -->
       <section class="tab" id="tab-projects">
         <div class="tab-head">
-          <div><h1>Projects Manager</h1><p>Add or edit portfolio items dynamically.</p></div>
+          <div><h1>Projects Manager</h1><p>Add, edit, or remove portfolio items.</p></div>
           <button class="btn primary" id="addProjectBtn" style="padding:12px 24px;font-size:0.9rem">+ Add Project</button>
         </div>
         <div class="project-grid-admin" id="projectsGrid"></div>
       </section>
 
-      <!-- SETTINGS -->
       <section class="tab" id="tab-settings">
         <div class="tab-head"><div><h1>Settings</h1><p>Update global site text and pricing plans.</p></div></div>
-        
         <div class="settings-grid">
-          <!-- General Text -->
           <div class="settings-card">
             <h2>Site Text</h2>
             <div class="field"><label>Hero Title</label><input id="s-heroTitle"></div>
@@ -272,15 +247,12 @@
             <div class="field"><label>Hero Subtitle</label><textarea id="s-heroSubtitle" rows="3"></textarea></div>
             <div class="field"><label>Contact Email</label><input id="s-contactEmail" type="email"></div>
           </div>
-
-          <!-- Pricing Plans Editor -->
           <div class="settings-card">
             <h2>Pricing Plans</h2>
             <div id="plansEditor"></div>
             <button type="button" class="add-plan-btn" id="addPlanBtn">+ Add New Plan</button>
           </div>
         </div>
-
         <div class="save-bar">
           <button class="btn primary" id="saveSettingsBtn">Save Settings →</button>
         </div>
@@ -297,11 +269,15 @@
   </div>
 </div>
 
-<!-- Add Project Modal -->
+<!-- Project Modal (Add / Edit) -->
 <div class="detail-modal" id="projectModal">
   <div class="detail-card" style="max-width:520px">
-    <div class="detail-head"><h3>Add Project</h3><button class="detail-close" id="projClose">×</button></div>
+    <div class="detail-head">
+      <h3 id="projectModalTitle">Add Project</h3>
+      <button class="detail-close" id="projClose">×</button>
+    </div>
     <div class="detail-body">
+      <input type="hidden" id="p-id">
       <div class="field"><label>Title</label><input id="p-title" placeholder="e.g. Benzo Design"></div>
       <div class="field"><label>Description</label><textarea id="p-desc" rows="3" placeholder="Short summary..."></textarea></div>
       <div class="field"><label>Tags (comma separated)</label><input id="p-tags" placeholder="SaaS, Full-Stack"></div>
@@ -329,7 +305,6 @@
 <div id="toast" aria-live="polite"></div>
 
 <script>
-/* === HELPERS === */
 const $ = s => document.querySelector(s);
 const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
 let toastTimer;
@@ -345,7 +320,6 @@ async function api(path, opts = {}) {
   return data;
 }
 
-/* === AUTH === */
 async function boot() {
   try { 
     await api('/api/quotes'); 
@@ -371,7 +345,6 @@ $('#loginForm').addEventListener('submit', async e => {
 });
 $('#logoutBtn').addEventListener('click', async () => { await fetch('/api/logout', { method: 'POST' }); showLogin(); });
 
-/* === TABS === */
 document.querySelectorAll('.side-btn').forEach(btn => btn.addEventListener('click', () => {
   document.querySelectorAll('.side-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
@@ -379,11 +352,9 @@ document.querySelectorAll('.side-btn').forEach(btn => btn.addEventListener('clic
   $('#tab-' + btn.dataset.tab).classList.add('active');
 }));
 
-/* === DATA LOADING (Independent) === */
 let quotes = [], projects = [], settings = {}, draftPlans = [];
 
 async function loadAll() {
-  // Load Quotes
   try {
     const q = await api('/api/quotes');
     quotes = Array.isArray(q) ? q : [];
@@ -391,7 +362,6 @@ async function loadAll() {
     renderStats(); renderQuotes();
   } catch (e) { console.error("Quotes failed:", e); }
 
-  // Load Projects
   try {
     const p = await api('/api/projects');
     projects = Array.isArray(p) ? p : [];
@@ -399,23 +369,20 @@ async function loadAll() {
     renderProjects(); renderStats();
   } catch (e) { 
     console.error("Projects failed:", e); 
-    $('#projectsGrid').innerHTML = `<div style="padding:30px;border:1px dashed var(--card-brd);border-radius:12px;text-align:center;color:var(--muted)"><p style="color:#ef4444;margin-bottom:10px">Failed to load projects.</p><p style="font-size:0.85rem">Run the SQL command in Cloudflare D1 to create the table.</p></div>`;
+    $('#projectsGrid').innerHTML = `<div style="padding:30px;border:1px dashed var(--card-brd);border-radius:12px;text-align:center;color:var(--muted)"><p style="color:#ef4444;margin-bottom:10px">Failed to load projects.</p></div>`;
   }
 
-  // Load Settings
   try {
     settings = await api('/api/settings') || {};
     $('#s-heroTitle').value = settings.heroTitle || ''; 
     $('#s-heroSubtitle').value = settings.heroSubtitle || '';
     $('#s-availabilityText').value = settings.availabilityText || ''; 
     $('#s-contactEmail').value = settings.contactEmail || '';
-    
     try { draftPlans = JSON.parse(settings.pricingPlans || '[]'); } catch { draftPlans = []; }
     renderPlansEditor();
   } catch (e) { console.error("Settings failed:", e); }
 }
 
-/* === STATS === */
 function renderStats() {
   const byStatus = quotes.reduce((a, q) => (a[q.status] = (a[q.status] || 0) + 1, a), {});
   const wonValue = quotes.filter(q => q.status === 'won').length;
@@ -427,12 +394,10 @@ function renderStats() {
   `;
 }
 
-/* === QUOTES === */
 function fmtDate(s) { if(!s) return '—'; const d = new Date(s); return isNaN(d) ? s : d.toLocaleString('en-GB', { day:'2-digit', month:'short', year:'numeric' }); }
 function renderQuotes() {
   const term = $('#qSearch').value.toLowerCase(); const status = $('#qStatusFilter').value;
   let filtered = quotes.filter(q => (!status || q.status === status) && (!term || JSON.stringify(q).toLowerCase().includes(term)));
-  
   if(!filtered.length) { $('#quotesWrap').innerHTML = `<table class="qt"><tr><td style="text-align:center;padding:50px;color:var(--muted)">No quotes found.</td></tr></table>`; return; }
   
   $('#quotesWrap').innerHTML = `
@@ -482,7 +447,6 @@ function openDetail(id) {
 }
 $('#detailClose').addEventListener('click', () => $('#detailModal').classList.remove('show'));
 
-/* === PROJECTS === */
 function renderProjects() {
   if(!projects.length) { $('#projectsGrid').innerHTML = `<div style="padding:40px;border:1px dashed var(--card-brd);border-radius:16px;text-align:center;color:var(--muted)">No projects yet. Click "Add Project" to create one.</div>`; return; }
   $('#projectsGrid').innerHTML = projects.map(p => `
@@ -492,28 +456,75 @@ function renderProjects() {
       <div class="tags">${(p.tags||'').split(',').map(t=>`<span style="background:rgba(99,102,241,0.15);padding:4px 8px;border-radius:4px;font-size:0.7rem">${esc(t.trim())}</span>`).join('')}</div>
       <div class="actions">
         <a href="${esc(p.link)}" target="_blank">Visit</a>
+        <button class="edit proj-edit-btn" data-id="${p.id}">Edit</button>
         <button class="del proj-del-btn" data-id="${p.id}">Delete</button>
       </div>
     </div>
   `).join('');
 }
+
+// Add Project Logic
 $('#addProjectBtn').addEventListener('click', () => {
+  $('#p-id').value = '';
   ['p-title','p-desc','p-tags','p-link'].forEach(id => $('#'+id).value = '');
+  $('#projectModalTitle').textContent = 'Add Project';
+  $('#saveProjectBtn').textContent = 'Save Project';
   $('#projectModal').classList.add('show');
 });
-$('#projClose').addEventListener('click', () => $('#projectModal').classList.remove('show'));
-$('#saveProjectBtn').addEventListener('click', async () => {
-  await api('/api/projects', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({
-    title: $('#p-title').value, description: $('#p-desc').value, tags: $('#p-tags').value, link: $('#p-link').value
-  })});
-  $('#projectModal').classList.remove('show'); showToast('Project added'); loadAll();
+
+// Edit Project Logic
+document.addEventListener('click', e => {
+  const editBtn = e.target.closest('.proj-edit-btn');
+  if (editBtn) {
+    const id = Number(editBtn.dataset.id);
+    const p = projects.find(x => x.id === id);
+    if (!p) return;
+    $('#p-id').value = p.id;
+    $('#p-title').value = p.title;
+    $('#p-desc').value = p.description;
+    $('#p-tags').value = p.tags;
+    $('#p-link').value = p.link;
+    $('#projectModalTitle').textContent = 'Edit Project';
+    $('#saveProjectBtn').textContent = 'Update Project';
+    $('#projectModal').classList.add('show');
+  }
 });
+
+$('#projClose').addEventListener('click', () => $('#projectModal').classList.remove('show'));
+
+// Save / Update Project Logic
+$('#saveProjectBtn').addEventListener('click', async () => {
+  const id = $('#p-id').value;
+  const payload = {
+    title: $('#p-title').value,
+    description: $('#p-desc').value,
+    tags: $('#p-tags').value,
+    link: $('#p-link').value
+  };
+  
+  try {
+    if (id) {
+      // Edit mode
+      payload.id = Number(id);
+      await api('/api/projects', { method: 'PATCH', headers: {'Content-Type':'application/json'}, body: JSON.stringify(payload) });
+      showToast('Project updated');
+    } else {
+      // Add mode
+      await api('/api/projects', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(payload) });
+      showToast('Project added');
+    }
+    $('#projectModal').classList.remove('show'); 
+    loadAll();
+  } catch (err) {
+    showToast(err.message || 'Error saving project');
+  }
+});
+
 document.addEventListener('click', e => {
   const delBtn = e.target.closest('.proj-del-btn');
   if (delBtn) { confirmDelete('project', Number(delBtn.dataset.id)); return; }
 });
 
-/* === CONFIRM DELETE === */
 let pendingAction = null;
 function confirmDelete(type, id) {
   pendingAction = { type, id };
@@ -537,7 +548,6 @@ $('#confirmOk').addEventListener('click', async () => {
   showToast('Deleted'); pendingAction = null;
 });
 
-/* === SETTINGS & PRICING PLANS EDITOR === */
 function renderPlansEditor() {
   const wrap = $('#plansEditor');
   if (!draftPlans.length) {
@@ -617,7 +627,6 @@ $('#saveSettingsBtn').addEventListener('click', async () => {
   }
 });
 
-/* === CSV EXPORT === */
 $('#exportBtn').addEventListener('click', () => {
   if(!quotes.length) return showToast('No quotes');
   const csv = ['Date,Name,Email,Phone,Budget,Status,Message'].concat(quotes.map(q => 
